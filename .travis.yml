@@ -7,3 +7,15 @@ before_install:
 
 script:
   - docker run -e CI=true sasquatch06/frontend-dev npm run test -- --coverage
+
+deploy:
+  provider: elasticbeanstalk
+  region: "ap-south-1"
+  name: "frontend"
+  env: "Frontend-env"
+  bucket_name: "elasticbeanstalk-ap-south-1-559010633691"
+  bucket_path: "frontend"
+  on:
+    branch: main
+  access_key_id: $AWS_ACCESS_KEY
+  secret_access_key: $AWS_SECRET_KEY
