@@ -1,0 +1,9 @@
+sudo: required
+services:
+  - docker
+
+before_install:
+  - docker build -t sasquatch06/frontend-dev -f Dockerfile.dev .
+
+script:
+  - docker run -e CI=true sasquatch06/frontend-dev npm run test
